@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table
+@AllArgsConstructor
+@Entity
 @Builder
 public class Item {
     @Id
@@ -19,6 +19,7 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
+    @ManyToOne
     private Product product;
     private Integer quantity;
 }

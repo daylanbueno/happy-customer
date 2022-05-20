@@ -12,6 +12,8 @@ import javax.persistence.Id;
 
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Customer {
     @Id
