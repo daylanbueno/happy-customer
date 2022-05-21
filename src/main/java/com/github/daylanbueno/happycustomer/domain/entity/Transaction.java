@@ -1,4 +1,4 @@
-package com.github.daylanbueno.happycustomer.entity;
+package com.github.daylanbueno.happycustomer.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

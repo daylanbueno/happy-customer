@@ -1,4 +1,4 @@
-package com.github.daylanbueno.happycustomer.entity;
+package com.github.daylanbueno.happycustomer.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +16,11 @@ public class Item {
     @Id
     @GeneratedValue
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
+
     @ManyToOne
     private Product product;
     private Integer quantity;

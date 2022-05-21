@@ -1,8 +1,7 @@
 package com.github.daylanbueno.happycustomer.resource;
 
 
-import com.github.daylanbueno.happycustomer.dto.CustomerDto;
-import com.github.daylanbueno.happycustomer.entity.Customer;
+import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
 import com.github.daylanbueno.happycustomer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

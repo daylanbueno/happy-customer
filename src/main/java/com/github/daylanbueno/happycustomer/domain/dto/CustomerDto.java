@@ -1,4 +1,4 @@
-package com.github.daylanbueno.happycustomer.dto;
+package com.github.daylanbueno.happycustomer.domain.dto;
 
 import lombok.Builder;
 import lombok.Data;

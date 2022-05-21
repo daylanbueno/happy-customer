@@ -1,6 +1,6 @@
 package com.github.daylanbueno.happycustomer.service;
 
-import com.github.daylanbueno.happycustomer.dto.CustomerDto;
+import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
 
 public interface CustomerService {
     public CustomerDto save(CustomerDto customerDto);
