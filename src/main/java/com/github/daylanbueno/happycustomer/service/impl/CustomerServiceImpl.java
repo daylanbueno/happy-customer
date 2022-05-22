@@ -9,6 +9,11 @@ import com.github.daylanbueno.happycustomer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -30,5 +35,13 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository
                 .findById(id).orElseThrow(() -> new BusinessException("Customer not found!"));
         return customerConverter.converterToDto(customer);
+    }
+
+    @Override
+    public List<CustomerDto> findByIds(Collection<Long> ids) {
+        List<Customer> customers = customerRepository.findAllById(ids);
+        return customers.stream()
+                .map(entity -> customerConverter.converterToDto(entity))
+                .collect(Collectors.toList());
     }
 }

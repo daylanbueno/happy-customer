@@ -1,13 +1,13 @@
 package com.github.daylanbueno.happycustomer.resource;
 
 
+import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.service.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -19,5 +19,10 @@ public class TransactionResources {
     @PostMapping
     public TransactionDto registerTransaction(@RequestBody TransactionDto transactionDto) {
         return transactionService.registerTransaction(transactionDto);
+    }
+
+    @GetMapping("/filter")
+    public List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter) {
+        return transactionService.findTransactionByFilter(transactionFilter);
     }
 }
