@@ -27,4 +27,5 @@ public class Transaction {
     private List<Item> items;
     @Column(name = "total", scale = 2, precision = 20)
     private BigDecimal total;
+    private Integer totalPoint;
 }

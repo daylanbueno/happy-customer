@@ -18,4 +18,5 @@ public class TransactionDto {
     private LocalDate dateTransaction;
     private List<ItemDto> items;
     private BigDecimal total;
+    private Integer totalPoint;
 }

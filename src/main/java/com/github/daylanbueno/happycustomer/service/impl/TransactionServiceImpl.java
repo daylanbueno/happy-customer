@@ -43,14 +43,33 @@ public class TransactionServiceImpl implements TransactionService {
 
         calculateTotalTransaction(transaction);
 
+        calculatePointsTransaction(transaction);
+
         Transaction newTransaction = transactionRepository.save(transaction);
 
         return TransactionDto.builder()
                 .idCustomer(newTransaction.getCustomer().getId())
                 .dateTransaction(newTransaction.getDate())
                 .total(newTransaction.getTotal())
+                .totalPoint(newTransaction.getTotalPoint())
                 .items(itemConverter.converterDtoItensToDto(newTransaction.getItems()))
                 .build();
+    }
+
+    private void calculatePointsTransaction(Transaction transaction) {
+        int totalTransaction = transaction.getTotal().intValue();
+        Integer totalPoint;
+
+        if (totalTransaction <= 50) return;
+
+        if(totalTransaction > 50 && totalTransaction < 100) {
+            totalPoint = (totalTransaction - 50);
+            transaction.setTotalPoint(totalPoint);
+            return;
+        }
+
+        totalPoint = (totalTransaction - 50) * 1 + (totalTransaction - 100) * 1;
+        transaction.setTotalPoint(totalPoint);
     }
 
     private void calculateTotalTransaction(Transaction transaction) {
