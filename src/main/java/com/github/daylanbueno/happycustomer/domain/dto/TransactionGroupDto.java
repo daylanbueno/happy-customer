@@ -15,6 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 public class TransactionGroupDto {
     private String nameCustomer;
-    private String moth;
-    private Integer totalPoint;
+    List<GroupDto> details;
 }

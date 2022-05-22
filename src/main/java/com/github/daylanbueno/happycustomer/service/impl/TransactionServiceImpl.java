@@ -5,6 +5,7 @@ import com.github.daylanbueno.happycustomer.converters.ItemConverter;
 import com.github.daylanbueno.happycustomer.converters.TransactionConverter;
 import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
+import com.github.daylanbueno.happycustomer.domain.dto.GroupDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
 import com.github.daylanbueno.happycustomer.domain.entity.Item;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -83,6 +85,17 @@ public class TransactionServiceImpl implements TransactionService {
 
         List<CustomerDto> customers = customerService.findByIds(idsCustomers);
 
+        List<LocalDate> dates = LocalDate.of(2022, LocalDate.now().getMonth().getValue() - 2, 01).datesUntil(LocalDate.now())
+                .filter(date -> date.getDayOfMonth() == 1)
+                .collect(Collectors.toList());
+
+
+        for (CustomerDto customerDto: customers) {
+            for (LocalDate currentDate: dates) {
+                filterTransactionByCustomerAndDateMonth(customerDto,currentDate,transactionByFilter, transactionGroupDtos);
+            }
+        }
+
         customers.stream()
                 .forEach(customer -> transactionGroupDtos.add(
                         TransactionGroupDto.builder()
@@ -90,6 +103,26 @@ public class TransactionServiceImpl implements TransactionService {
                                 .build()));
 
         return transactionGroupDtos;
+    }
+
+    private void filterTransactionByCustomerAndDateMonth(CustomerDto customerDto, LocalDate currentDate, List<TransactionDto> transactionByFilter, List<TransactionGroupDto> transactionGroupDtos) {
+        LocalDate start = currentDate.of(currentDate.getYear(), currentDate.getMonth().getValue(), 01);
+        LocalDate end = currentDate.with(TemporalAdjusters.lastDayOfMonth());
+        List<TransactionDto> result = transactionByFilter.stream().filter(transaction -> {
+            return transaction.getIdCustomer() == customerDto.getId()
+                    && currentDate.isAfter(start) && currentDate.isBefore(end);
+        }).collect(Collectors.toList());
+
+
+        TransactionGroupDto group = TransactionGroupDto.builder().nameCustomer(customerDto.getName()).build();
+
+        result.stream().forEach(transact -> {
+            group.getDetails().add(GroupDto.builder()
+                    .moth(transact.getDateTransaction().getMonth().name())
+                    .totalPoint(transact.getTotalPoint())
+                    .build());
+        });
+
     }
 
     private void includIdCustomers(List<TransactionDto> transactionByFilter, Collection<Long> idsCustomers) {

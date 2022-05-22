@@ -3,6 +3,7 @@ package com.github.daylanbueno.happycustomer.resource;
 
 import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
+import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
 import com.github.daylanbueno.happycustomer.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +25,11 @@ public class TransactionResources {
     @GetMapping("/filter")
     public List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter) {
         return transactionService.findTransactionByFilter(transactionFilter);
+    }
+
+
+    @GetMapping("/filter/group")
+    public List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter) {
+        return transactionService.findTransactionGroup(transactionFilter);
     }
 }

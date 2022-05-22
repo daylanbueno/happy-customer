@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionDto {
+    private Long id;
     private Long idCustomer;
     private LocalDate dateTransaction;
     private List<ItemDto> items;

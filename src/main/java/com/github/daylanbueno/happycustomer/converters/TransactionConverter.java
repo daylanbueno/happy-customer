@@ -13,6 +13,7 @@ public class TransactionConverter {
 
     public TransactionDto conveterToDTo(Transaction newTransaction) {
         return TransactionDto.builder()
+                .id(newTransaction.getId())
                 .idCustomer(newTransaction.getCustomer().getId())
                 .dateTransaction(newTransaction.getDate())
                 .total(newTransaction.getTotal())
