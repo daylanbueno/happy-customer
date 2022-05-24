@@ -17,6 +17,7 @@ Technologies
 * After clones the project on your machine
 * In the root folder of the project run the following command
   - mvn spring-boot:run
-  ![image](https://user-images.githubusercontent.com/17939912/170051155-870bbd4c-036c-499a-8dd7-0a59c041d56b.png)
+  
+ ![image](https://user-images.githubusercontent.com/17939912/170051155-870bbd4c-036c-499a-8dd7-0a59c041d56b.png)
 
 * Api will run on port 8081 using in-memory h2 database.
