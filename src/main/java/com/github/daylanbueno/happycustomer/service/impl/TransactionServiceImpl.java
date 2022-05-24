@@ -75,6 +75,14 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<TransactionDto> findTranscationsByIdCustomer(Long idCustomer) {
+        List<Transaction> transactions = transactionRepository.findTransactionByCustomer(idCustomer);
+        return transactions.stream()
+                .map(entity -> transactionConverter.conveterToDTo(entity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter) {
        List<TransactionGroupDto> transactionGroupDtos = new ArrayList<>();
         List<TransactionDto> transactionByFilter = findTransactionByFilter(transactionFilter);

@@ -12,6 +12,8 @@ public interface TransactionService {
 
     List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter);
 
+    List<TransactionDto> findTranscationsByIdCustomer(Long idCustomer);
+
     List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter);
 
 

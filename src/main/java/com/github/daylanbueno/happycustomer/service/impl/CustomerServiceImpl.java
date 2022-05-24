@@ -1,17 +1,21 @@
 package com.github.daylanbueno.happycustomer.service.impl;
 
 import com.github.daylanbueno.happycustomer.converters.CustomerConverter;
+import com.github.daylanbueno.happycustomer.converters.TransactionConverter;
 import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
+import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.entity.Customer;
+import com.github.daylanbueno.happycustomer.domain.entity.Transaction;
 import com.github.daylanbueno.happycustomer.exception.BusinessException;
 import com.github.daylanbueno.happycustomer.repository.CustomerRepository;
+import com.github.daylanbueno.happycustomer.repository.TransactionRepository;
 import com.github.daylanbueno.happycustomer.service.CustomerService;
+import com.github.daylanbueno.happycustomer.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +24,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerConverter customerConverter;
+    private final TransactionRepository transactionRepository;
+    private final TransactionConverter transactionConverter;
 
     @Override
     public CustomerDto save(CustomerDto customerDto) {
@@ -34,7 +40,17 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDto findById(Long id) {
         Customer customer = customerRepository
                 .findById(id).orElseThrow(() -> new BusinessException("Customer not found!"));
-        return customerConverter.converterToDto(customer);
+
+        List<Transaction> transactionsByCustomer = transactionRepository.findTransactionByCustomer(customer.getId());
+
+        List<TransactionDto> transactionsDto = transactionsByCustomer.stream()
+                .map(entity -> transactionConverter.conveterToDTo(entity))
+                .collect(Collectors.toList());
+
+        CustomerDto customerDto = customerConverter.converterToDto(customer);
+        customerDto.setTransactionsDtos(transactionsDto);
+
+        return customerDto;
     }
 
     @Override

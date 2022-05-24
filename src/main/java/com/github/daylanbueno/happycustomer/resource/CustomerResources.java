@@ -4,10 +4,7 @@ package com.github.daylanbueno.happycustomer.resource;
 import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
 import com.github.daylanbueno.happycustomer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -19,5 +16,10 @@ public class CustomerResources {
     @PostMapping
     public CustomerDto save(@RequestBody CustomerDto customerDto) {
         return customerService.save(customerDto);
+    }
+
+    @GetMapping("/{id}")
+    public CustomerDto findById(@PathVariable Long id) {
+        return customerService.findById(id);
     }
 }

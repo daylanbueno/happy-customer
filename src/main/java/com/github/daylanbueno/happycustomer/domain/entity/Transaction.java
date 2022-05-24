@@ -23,7 +23,7 @@ public class Transaction {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @OneToMany(mappedBy = "transaction")
+    @OneToMany(mappedBy = "transaction",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Item> items;
     @Column(name = "total", scale = 2, precision = 20)
     private BigDecimal total;
