@@ -1,4 +1,4 @@
-# happy-customer
+# happy-customer-api
 
 SalesApp is an API to count the points earned by the customer for each purchase.
 
