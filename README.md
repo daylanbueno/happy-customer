@@ -9,6 +9,7 @@ Technologies
 + Spring boot
 + Java 11
 + Lombok
++ Swagger2
 + Jpa/Hibernate
 + Rest
 + Maven
@@ -21,3 +22,7 @@ Technologies
  ![image](https://user-images.githubusercontent.com/17939912/170051155-870bbd4c-036c-499a-8dd7-0a59c041d56b.png)
 
 * Api will run on port 8081 using in-memory h2 database.
+
+Swagger link to test the api: http://localhost:8181/swagger-ui.html#/
+
+![image](https://user-images.githubusercontent.com/17939912/170894440-c0bc7241-1d9e-4d48-a87c-910b9dc30d77.png)
