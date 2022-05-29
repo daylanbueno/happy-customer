@@ -3,7 +3,6 @@ package com.github.daylanbueno.happycustomer.service.impl;
 import com.github.daylanbueno.happycustomer.converters.CustomerConverter;
 import com.github.daylanbueno.happycustomer.converters.ItemConverter;
 import com.github.daylanbueno.happycustomer.converters.TransactionConverter;
-import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
 import com.github.daylanbueno.happycustomer.domain.dto.GroupDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
@@ -58,18 +57,6 @@ public class TransactionServiceImpl implements TransactionService {
         Transaction newTransaction = transactionRepository.save(transaction);
 
         return transactionConverter.conveterToDTo(newTransaction);
-    }
-
-    @Override
-    public List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter) {
-        List<Transaction> transactions = transactionRepository.findAll(transactionFilter.toSpecification());
-
-        List<TransactionDto> transactionDtos = transactions
-                .stream()
-                .map(entity -> transactionConverter.conveterToDTo(entity))
-                .collect(Collectors.toList());
-
-        return transactionDtos;
     }
 
     @Override

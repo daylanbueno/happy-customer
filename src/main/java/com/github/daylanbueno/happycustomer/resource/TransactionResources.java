@@ -1,7 +1,6 @@
 package com.github.daylanbueno.happycustomer.resource;
 
 
-import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
 import com.github.daylanbueno.happycustomer.service.TransactionService;
