@@ -36,3 +36,6 @@ You can use the test in swagger: http://localhost:8181/api/transactions/group-la
 
 ![image](https://user-images.githubusercontent.com/17939912/170894675-e39a9950-a923-4bc8-a54d-523292f9bfbd.png)
 
+Find all Customers.
+![image](https://user-images.githubusercontent.com/17939912/170896551-e55e6224-9a7b-4a8f-80c3-2409f4fb4ea8.png)
+
