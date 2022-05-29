@@ -35,8 +35,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Library API")
-                .description("API para controle de livraria, aluguel de livros")
+                .title("Happy Customer API")
+                .description("API that calculates and returns the reward points")
                 .version("1.0")
                 .contact(contact())
                 .build();

@@ -12,9 +12,5 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long>, JpaSpecificationExecutor<Transaction> {
-
-    @Query(value = "SELECT t FROM Transaction t WHERE t.customer.id = :idCustomer")
-    public List<Transaction> findTransactionByCustomer(@Param("idCustomer") Long idCustomer);
-
     public List<Transaction> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }

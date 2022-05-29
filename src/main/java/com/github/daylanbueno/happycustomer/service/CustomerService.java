@@ -8,5 +8,5 @@ import java.util.List;
 public interface CustomerService {
     public CustomerDto save(CustomerDto customerDto);
     public CustomerDto findById(Long id);
-    public List<CustomerDto> findByIds(Collection<Long> ids);
+    public List<CustomerDto> findAll();
 }

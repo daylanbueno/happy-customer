@@ -13,7 +13,6 @@ import com.github.daylanbueno.happycustomer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +22,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerConverter customerConverter;
-    private final TransactionRepository transactionRepository;
-    private final TransactionConverter transactionConverter;
 
     @Override
     public CustomerDto save(CustomerDto customerDto) {
@@ -36,27 +33,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDto findById(Long id) {
-        Customer customer = customerRepository
-                .findById(id).orElseThrow(() -> new BusinessException("Customer not found!"));
-
-        List<Transaction> transactionsByCustomer = transactionRepository.findTransactionByCustomer(customer.getId());
-
-        List<TransactionDto> transactionsDto = transactionsByCustomer.stream()
-                .map(entity -> transactionConverter.conveterToDTo(entity))
-                .collect(Collectors.toList());
-
-        CustomerDto customerDto = customerConverter.converterToDto(customer);
-        customerDto.setTransactionsDtos(transactionsDto);
-
-        return customerDto;
-    }
-
-    @Override
-    public List<CustomerDto> findByIds(Collection<Long> ids) {
-        List<Customer> customers = customerRepository.findAllById(ids);
+    public List<CustomerDto> findAll() {
+        List<Customer> customers =  customerRepository.findAll();
         return customers.stream()
                 .map(entity -> customerConverter.converterToDto(entity))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomerDto findById(Long id) {
+        Customer customer = customerRepository
+                .findById(id).orElseThrow(() -> new BusinessException("Customer not found!"));
+        return  customerConverter.converterToDto(customer);
     }
 }
