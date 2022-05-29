@@ -1,14 +1,10 @@
 package com.github.daylanbueno.happycustomer.service.impl;
 
 import com.github.daylanbueno.happycustomer.converters.CustomerConverter;
-import com.github.daylanbueno.happycustomer.converters.TransactionConverter;
 import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
-import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.entity.Customer;
-import com.github.daylanbueno.happycustomer.domain.entity.Transaction;
 import com.github.daylanbueno.happycustomer.exception.BusinessException;
 import com.github.daylanbueno.happycustomer.repository.CustomerRepository;
-import com.github.daylanbueno.happycustomer.repository.TransactionRepository;
 import com.github.daylanbueno.happycustomer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
