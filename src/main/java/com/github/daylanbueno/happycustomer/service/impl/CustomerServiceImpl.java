@@ -10,7 +10,6 @@ import com.github.daylanbueno.happycustomer.exception.BusinessException;
 import com.github.daylanbueno.happycustomer.repository.CustomerRepository;
 import com.github.daylanbueno.happycustomer.repository.TransactionRepository;
 import com.github.daylanbueno.happycustomer.service.CustomerService;
-import com.github.daylanbueno.happycustomer.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

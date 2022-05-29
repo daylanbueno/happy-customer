@@ -6,8 +6,10 @@ import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
 import com.github.daylanbueno.happycustomer.service.TransactionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,14 +24,16 @@ public class TransactionResources {
         return transactionService.registerTransaction(transactionDto);
     }
 
-    @GetMapping("/filter")
-    public List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter) {
-        return transactionService.findTransactionByFilter(transactionFilter);
+    @GetMapping("/filter/date")
+    public List<TransactionDto> findTranscationsByFilterDate(@RequestParam("startDate")
+                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                             @RequestParam("endDate")
+                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate) {
+        return transactionService.findTranscationsByFilterDate(startDate, endDate);
     }
 
-
-    @GetMapping("/filter/group")
-    public List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter) {
-        return transactionService.findTransactionGroup(transactionFilter);
+    @GetMapping("/group-last-three-month")
+    public List<TransactionGroupDto> findTransactionGroupTheLastThreeMonth() {
+        return transactionService.findTransactionGroupTheLastThreeMonth();
     }
 }

@@ -5,11 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class GroupDto {
-    private String moth;
+    private LocalDate dateTransaction;
+    private BigDecimal total;
     private Integer totalPoint;
 }

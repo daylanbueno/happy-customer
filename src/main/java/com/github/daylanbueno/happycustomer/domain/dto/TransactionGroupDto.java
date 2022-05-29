@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -15,5 +16,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TransactionGroupDto {
     private String nameCustomer;
+    private String moth;
     List<GroupDto> details;
 }

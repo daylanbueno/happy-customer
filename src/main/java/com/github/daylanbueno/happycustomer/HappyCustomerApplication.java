@@ -68,7 +68,7 @@ public class HappyCustomerApplication  implements CommandLineRunner {
 		Transaction transactionUpdate2 = transactionRepository.findById(newtransactionDto2.getId()).orElse(null);
 		Transaction transactionUpdate3 = transactionRepository.findById(newtransactionDto3.getId()).orElse(null);
 
-		transactionUpdate1.setDate(LocalDate.now().minusMonths(1));
+		transactionUpdate1.setDate(LocalDate.now());
 		transactionUpdate2.setDate(LocalDate.now().minusMonths(2));
 		transactionUpdate3.setDate(LocalDate.now().minusMonths(3));
 

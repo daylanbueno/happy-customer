@@ -4,6 +4,7 @@ import com.github.daylanbueno.happycustomer.domain.Filters.TransactionFilter;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionService {
@@ -14,7 +15,9 @@ public interface TransactionService {
 
     List<TransactionDto> findTranscationsByIdCustomer(Long idCustomer);
 
+    List<TransactionDto> findTranscationsByFilterDate(LocalDate startDate, LocalDate endDate);
+
     List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter);
 
-
+    List<TransactionGroupDto> findTransactionGroupTheLastThreeMonth();
 }
