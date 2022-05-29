@@ -1,7 +1,6 @@
 package com.github.daylanbueno.happycustomer.repository;
 
 import com.github.daylanbueno.happycustomer.domain.entity.Transaction;
-import org.apache.tomcat.jni.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

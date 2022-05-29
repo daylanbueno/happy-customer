@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -61,7 +60,6 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionConverter.conveterToDTo(newTransaction);
     }
 
-
     @Override
     public List<TransactionDto> findTransactionByFilter(TransactionFilter transactionFilter) {
         List<Transaction> transactions = transactionRepository.findAll(transactionFilter.toSpecification());
@@ -75,14 +73,6 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDto> findTranscationsByIdCustomer(Long idCustomer) {
-        List<Transaction> transactions = transactionRepository.findTransactionByCustomer(idCustomer);
-        return transactions.stream()
-                .map(entity -> transactionConverter.conveterToDTo(entity))
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<TransactionDto> findTranscationsByFilterDate(LocalDate startDate, LocalDate endDate) {
 
         List<Transaction> transactions = transactionRepository.findByDateBetween(startDate, endDate);
@@ -92,46 +82,6 @@ public class TransactionServiceImpl implements TransactionService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<TransactionGroupDto> findTransactionGroup(TransactionFilter transactionFilter) {
-       List<TransactionGroupDto> transactionGroupDtos = new ArrayList<>();
-
-        List<TransactionDto> transactionByFilter = findTransactionByFilter(transactionFilter);
-
-        Collection<Long> idsCustomers = new HashSet<>();
-
-        includIdCustomers(transactionByFilter, idsCustomers);
-
-        List<CustomerDto> customers = customerService.findByIds(idsCustomers);
-
-        List<LocalDate> dates = LocalDate.of(2022, LocalDate.now().getMonth().getValue() - 2, 01).datesUntil(LocalDate.now())
-                .filter(date -> date.getDayOfMonth() == 1)
-                .collect(Collectors.toList());
-
-
-        for (CustomerDto customerDto: customers) {
-            for (LocalDate currentDate: dates) {
-//                filterTransactionByCustomerAndDateMonth(customerDto,currentDate,transactionByFilter, transactionGroupDtos);
-            }
-        }
-
-        customers.stream()
-                .forEach(customer -> transactionGroupDtos.add(
-                        TransactionGroupDto.builder()
-                                .nameCustomer(customer.getName())
-                                .build()));
-
-        return transactionGroupDtos;
-    }
-
-
-    // findTransaction date.
-    // saparar os clientes não pegar repetidos.
-    // buscar as transações  para cada mês.
-
-    /**
-     *
-     * */
     @Override
     public List<TransactionGroupDto> findTransactionGroupTheLastThreeMonth() {
         LocalDate startDate = LocalDate.now().minusMonths(3);
@@ -147,7 +97,7 @@ public class TransactionServiceImpl implements TransactionService {
 
         includIdCustomers(transactionDtos, idsCustomers);
 
-        List<LocalDate> dates = LocalDate.of(2022, LocalDate.now().getMonth().getValue() - 2, 01).datesUntil(LocalDate.now())
+        List<LocalDate> dates = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue() - 2, 01).datesUntil(LocalDate.now())
                 .filter(date -> date.getDayOfMonth() == 1)
                 .collect(Collectors.toList());
 
@@ -165,13 +115,6 @@ public class TransactionServiceImpl implements TransactionService {
                                                          LocalDate dateMonth,
                                                          List<TransactionDto> transactionDtos,
                                                          List<TransactionGroupDto> transactionGroupDtos ) {
-
-        LocalDate endDate = dateMonth.with(TemporalAdjusters.lastDayOfMonth());
-
-        LocalDate startDate = dateMonth;
-
-        //2022-04-01 is antes de 2022-04-30
-        //2022-04-30  is depois de
 
         List<TransactionDto> result = transactionDtos.stream().filter(transaction -> transaction.getIdCustomer() == idCustomer
                    && transaction.getDateTransaction().getMonth().name().equals(dateMonth.getMonth().name())
