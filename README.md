@@ -8,6 +8,7 @@ The objective is to calculate the points accumulated on each purchase.
 Technologies
 + Spring boot
 + Java 11
++ H2 Database
 + Lombok
 + Swagger2
 + Jpa/Hibernate
