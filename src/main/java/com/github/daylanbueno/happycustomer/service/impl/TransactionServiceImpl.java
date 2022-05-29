@@ -19,9 +19,11 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.TemporalAdjusters;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -171,12 +173,9 @@ public class TransactionServiceImpl implements TransactionService {
         //2022-04-01 is antes de 2022-04-30
         //2022-04-30  is depois de
 
-
-
-        List<TransactionDto> result = transactionDtos.stream().filter(transaction -> {
-            return transaction.getIdCustomer() == idCustomer
-                   && transaction.getDateTransaction().getMonth().name().equals(dateMonth.getMonth().name()) ;
-        }).collect(Collectors.toList());
+        List<TransactionDto> result = transactionDtos.stream().filter(transaction -> transaction.getIdCustomer() == idCustomer
+                   && transaction.getDateTransaction().getMonth().name().equals(dateMonth.getMonth().name())
+        ).collect(Collectors.toList());
 
 
         CustomerDto currentCustomer = customerService.findById(idCustomer);
@@ -195,6 +194,11 @@ public class TransactionServiceImpl implements TransactionService {
         ).collect(Collectors.toList());
 
         group.getDetails().addAll(groupDetails);
+
+        Integer totalPointByMonth = group.getDetails().stream().map(transaction -> transaction.getTotalPoint())
+                .reduce(0, (currentValue, nextValue) -> currentValue + nextValue);
+
+        group.setTotalPointMonth(totalPointByMonth);
 
         transactionGroupDtos.add(group);
     }

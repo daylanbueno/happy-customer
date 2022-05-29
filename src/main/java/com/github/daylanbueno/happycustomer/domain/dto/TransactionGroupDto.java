@@ -17,5 +17,6 @@ import java.util.List;
 public class TransactionGroupDto {
     private String nameCustomer;
     private String moth;
+    private Integer totalPointMonth;
     List<GroupDto> details;
 }
