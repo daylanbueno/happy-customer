@@ -36,7 +36,3 @@ You can use the test in swagger: http://localhost:8181/api/transactions/group-la
 
 ![image](https://user-images.githubusercontent.com/17939912/170894675-e39a9950-a923-4bc8-a54d-523292f9bfbd.png)
 
-
-Given a record of every transaction during a three-month period, calculate the reward points earned for each customer per month and total. 
-![image](https://user-images.githubusercontent.com/17939912/170896351-2722c7a7-955b-4714-a138-b6b91329927f.png)
-
