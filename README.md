@@ -26,7 +26,7 @@ Technologies
 
 Swagger link to test the api: http://localhost:8181/swagger-ui.html#/
 
-![image](https://user-images.githubusercontent.com/17939912/170894440-c0bc7241-1d9e-4d48-a87c-910b9dc30d77.png)
+![image](https://user-images.githubusercontent.com/17939912/170895345-ddec7a78-7280-465c-ba25-3e34a7b63949.png)
 
 
 Given a record of each transaction over a three-month period, calculate the reward points earned for each customer by month and total.
