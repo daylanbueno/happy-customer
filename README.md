@@ -8,6 +8,7 @@ The objective is to calculate the points accumulated on each purchase.
 Technologies
 + Spring boot
 + Java 11
++ H2 Database
 + Lombok
 + Swagger2
 + Jpa/Hibernate
@@ -23,13 +24,29 @@ Technologies
 
 * Api will run on port 8081 using in-memory h2 database.
 
+See swagger documentation
+
 Swagger link to test the api: http://localhost:8181/swagger-ui.html#/
 
-![image](https://user-images.githubusercontent.com/17939912/170894440-c0bc7241-1d9e-4d48-a87c-910b9dc30d77.png)
-
+![image](https://user-images.githubusercontent.com/17939912/170896205-cc5e3bf4-9d86-4e72-ab7c-f9bf105bb36a.png)
 
 Given a record of each transaction over a three-month period, calculate the reward points earned for each customer by month and total.
 
-You can use the test in swagger: http://localhost:8181/api/transactions/group-last-three-month
 
+You can use the test in swagger: http://localhost:8181/api/transactions/group-last-three-month
 ![image](https://user-images.githubusercontent.com/17939912/170894675-e39a9950-a923-4bc8-a54d-523292f9bfbd.png)
+
+
+
+Customers
+![image](https://user-images.githubusercontent.com/17939912/170896551-e55e6224-9a7b-4a8f-80c3-2409f4fb4ea8.png)
+
+
+All transactions
+![image](https://user-images.githubusercontent.com/17939912/170896807-4fedfbd6-1348-4859-a742-7ad136bb5060.png)
+
+
+
+You can filter by date and customer.
+![image](https://user-images.githubusercontent.com/17939912/170896912-18d64b99-37de-4ac6-a8eb-57e273ee0cb3.png)
+
