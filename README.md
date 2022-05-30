@@ -42,3 +42,6 @@ Customers
 All transactions
 ![image](https://user-images.githubusercontent.com/17939912/170896807-4fedfbd6-1348-4859-a742-7ad136bb5060.png)
 
+You can filter by date and customer.
+![image](https://user-images.githubusercontent.com/17939912/170896912-18d64b99-37de-4ac6-a8eb-57e273ee0cb3.png)
+
