@@ -23,6 +23,21 @@ public class TransactionResources {
         return transactionService.registerTransaction(transactionDto);
     }
 
+    @GetMapping("/filter/customer/{id}")
+    public List<TransactionDto> findTranscationsByFilterDateAndCustomer(@RequestParam("startDate")
+                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                             @RequestParam("endDate")
+                                                             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                             @PathVariable("id") Long id) {
+        return transactionService.findTranscationsByFilterDateAndCustomer(startDate, endDate, id);
+    }
+
+    @GetMapping
+    public List<TransactionDto> findAll() {
+        return transactionService.findAll();
+    }
+
+
     @GetMapping("/filter/date")
     public List<TransactionDto> findTranscationsByFilterDate(@RequestParam("startDate")
                                                              @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,

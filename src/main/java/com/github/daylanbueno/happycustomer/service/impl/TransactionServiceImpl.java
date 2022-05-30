@@ -7,6 +7,7 @@ import com.github.daylanbueno.happycustomer.domain.dto.CustomerDto;
 import com.github.daylanbueno.happycustomer.domain.dto.GroupDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionDto;
 import com.github.daylanbueno.happycustomer.domain.dto.TransactionGroupDto;
+import com.github.daylanbueno.happycustomer.domain.entity.Customer;
 import com.github.daylanbueno.happycustomer.domain.entity.Item;
 import com.github.daylanbueno.happycustomer.domain.entity.Transaction;
 import com.github.daylanbueno.happycustomer.repository.TransactionRepository;
@@ -18,10 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,6 +94,33 @@ public class TransactionServiceImpl implements TransactionService {
         }
 
         return transactionGroupDtos;
+    }
+
+    @Override
+    public List<TransactionDto> findTranscationsByFilterDateAndCustomer(LocalDate startDate, LocalDate endDate, Long id) {
+
+        CustomerDto customerDto = customerService.findById(id);
+
+        if (customerDto == null) {
+            return Arrays.asList();
+        }
+
+        Customer customer = customerConverter.converterToEntity(customerDto);
+
+
+        List<Transaction> transactions = transactionRepository.findByDateBetweenAndCustomer(startDate, endDate, customer);
+
+        return transactions.stream()
+                .map(entity -> transactionConverter.conveterToDTo(entity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TransactionDto> findAll() {
+        List<Transaction> allTransactions = transactionRepository.findAll();
+        return allTransactions.stream()
+                .map(entity -> transactionConverter.conveterToDTo(entity))
+                .collect(Collectors.toList());
     }
 
     private void filterTransactionByCustomerAndDateMonth(Long idCustomer,

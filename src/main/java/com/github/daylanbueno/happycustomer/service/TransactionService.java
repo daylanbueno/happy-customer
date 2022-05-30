@@ -13,4 +13,8 @@ public interface TransactionService {
     List<TransactionDto> findTranscationsByFilterDate(LocalDate startDate, LocalDate endDate);
 
     List<TransactionGroupDto> findTransactionGroupTheLastThreeMonth();
+
+    List<TransactionDto> findTranscationsByFilterDateAndCustomer(LocalDate startDate, LocalDate endDate, Long id);
+
+    List<TransactionDto> findAll();
 }

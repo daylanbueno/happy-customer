@@ -15,6 +15,7 @@ public class TransactionConverter {
         return TransactionDto.builder()
                 .id(newTransaction.getId())
                 .idCustomer(newTransaction.getCustomer().getId())
+                .customerName(newTransaction.getCustomer().getName())
                 .dateTransaction(newTransaction.getDate())
                 .total(newTransaction.getTotal())
                 .totalPoint(newTransaction.getTotalPoint())

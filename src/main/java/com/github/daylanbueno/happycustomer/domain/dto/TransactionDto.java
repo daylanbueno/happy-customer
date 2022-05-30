@@ -16,6 +16,7 @@ import java.util.List;
 public class TransactionDto {
     private Long id;
     private Long idCustomer;
+    private String customerName;
     private LocalDate dateTransaction;
     private List<ItemDto> items;
     private BigDecimal total;
