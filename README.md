@@ -32,15 +32,20 @@ Swagger link to test the api: http://localhost:8181/swagger-ui.html#/
 
 Given a record of each transaction over a three-month period, calculate the reward points earned for each customer by month and total.
 
-You can use the test in swagger: http://localhost:8181/api/transactions/group-last-three-month
 
+You can use the test in swagger: http://localhost:8181/api/transactions/group-last-three-month
 ![image](https://user-images.githubusercontent.com/17939912/170894675-e39a9950-a923-4bc8-a54d-523292f9bfbd.png)
+
+
 
 Customers
 ![image](https://user-images.githubusercontent.com/17939912/170896551-e55e6224-9a7b-4a8f-80c3-2409f4fb4ea8.png)
 
+
 All transactions
 ![image](https://user-images.githubusercontent.com/17939912/170896807-4fedfbd6-1348-4859-a742-7ad136bb5060.png)
+
+
 
 You can filter by date and customer.
 ![image](https://user-images.githubusercontent.com/17939912/170896912-18d64b99-37de-4ac6-a8eb-57e273ee0cb3.png)
